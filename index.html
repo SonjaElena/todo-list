@@ -12,9 +12,22 @@
     <div class="container">
         <div class="todo-app">
             <h2>To-do List </h2>
+
+            <div class="filter">
+                <input type="radio" id="fastCheckbox" onclick="toggleFilter(this)">
+                <label for="allCheckbox">All</label><br>
+
+                <input type="radio" id="openCheckbox" onclick="toggleFilter(this)">
+                <label for="openCheckbox">Open</label><br>
+
+                <input type="radio" id="doneCheckbox" onclick="toggleFilter(this)">
+                <label for="doneCheckbox">Done</label><br>
+            </div>
+
             <div class="row">
                 <input type="text" id="input-box" placeholder="To do">
-                <button onclick="addTask()">Add</button>
+                <button id="addTask" onclick="addTask()">Add</button>
+                <button id="removeTask" onclick="removeTask()">Remove done</button>
             </div>
             <ul id="list-container"></ul>
 

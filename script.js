@@ -1,14 +1,33 @@
 const inputBox = document.getElementById("input-box");
 const listContainer = document.getElementById("list-container");
 
+// Add
 function addTask() {
-  if (inputBox.value === "") {
-    alert("Write your todo down");
+  const listItems = Array.from(
+    document.getElementById("list-container").getElementsByTagName("li")
+  );
+  const double = listItems.some(
+    (item) =>
+      item.textContent.trim().toLowerCase() ===
+      inputBox.value.trim().toLowerCase()
+  );
+
+  if (inputBox.value === "" || double) {
+    alert("Write something down to add it to your list");
     return;
   }
 
   let li = document.createElement("li");
-  li.textContent = inputBox.value;
+  let checkBox = document.createElement("input");
+
+  checkBox.type = "checkbox";
+  checkBox.addEventListener("click", function () {
+    li.classList.toggle("checked");
+    saveData();
+  });
+
+  li.appendChild(checkBox);
+  li.appendChild(document.createTextNode(inputBox.value));
 
   listContainer.appendChild(li);
 
@@ -16,22 +35,32 @@ function addTask() {
   saveData();
 }
 
-// span.addEventListener("click", () => li.remove()); // Event-Listener für Löschen
+// Delete die gecheckten
+function removeTask() {
+  let checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
-// listContainer.addEventListener(
-//   "click",
-//   function (e) {
-//     if (e.target.tagName === "LI") {
-//       e.target.classList.toggle("checked"); // Wenn auf das Li Objekt gerschrieben wird, dann wird es gechecked
-//       saveData();
-//     } else if (e.target.tagName === "SPAN") {
-//       e.target.parentElement.remove(); // Wenn auf das Kreuz gedrückt wird, dann wird das Element gelöscht
-//       saveData();
-//     }
-//   },
-//   false
-// );
+  checkboxes.forEach(function (checkbox) {
+    if (checkbox.checked) {
+      checkbox.parentElement.remove();
+      saveData();
+    }
+  });
+}
 
+// Filter
+function toggleFilter(checkbox) {
+  const radioButtons = document.querySelectorAll('.filter input[type="radio"]');
+
+  radioButtons.forEach((button) => {
+    if (button !== checkbox) {
+      button.checked = false;
+    }
+  });
+
+  saveData();
+}
+
+// Storage
 function saveData() {
   localStorage.setItem("data", listContainer.innerHTML);
 }
