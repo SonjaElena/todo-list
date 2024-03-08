@@ -14,15 +14,20 @@
             <h2>To-do List </h2>
 
             <div class="filter">
-                <input checked type="radio" id="allCheckbox" onclick="toggleFilter(this)">
-                <label for="allCheckbox">All</label><br>
-
-                <input type="radio" id="openCheckbox" onclick="toggleFilter(this)">
-                <label for="openCheckbox">Open</label><br>
-
-                <input type="radio" id="doneCheckbox" onclick="toggleFilter(this)">
-                <label for="doneCheckbox">Done</label><br>
+                <div class="checkbox-label">
+                    <input checked type="radio" id="allCheckbox" onclick="toggleFilter(this)">
+                    <label for="allCheckbox">All</label>
+                </div>
+                <div class="checkbox-label">
+                    <input type="radio" id="openCheckbox" onclick="toggleFilter(this)">
+                    <label for="openCheckbox">Open</label>
+                </div>
+                <div class="checkbox-label">
+                    <input type="radio" id="doneCheckbox" onclick="toggleFilter(this)">
+                    <label for="doneCheckbox">Done</label>
+                </div>
             </div>
+
 
             <div class="row">
                 <input type="text" id="input-box" placeholder="To do">

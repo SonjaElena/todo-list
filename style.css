@@ -22,6 +22,22 @@
   border-radius: 10px;
 }
 
+.filter {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+label {
+  margin-left: 7px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
 .todo-app h2 {
   color: black;
   display: flex;

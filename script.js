@@ -7,6 +7,13 @@ const doneRdio = document.getElementById("");
 const openRdio = document.getElementById("");
 
 // Add
+
+inputBox.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    addTask();
+  }
+});
+
 function addTask() {
   const listItems = Array.from(listContainer.getElementsByTagName("li"));
   const double = listItems.some(
@@ -16,7 +23,7 @@ function addTask() {
   );
 
   if (inputBox.value === "" || double) {
-    alert("Write something down to add it to your list");
+    alert("Write a new to do to add to your list");
     return;
   }
 
