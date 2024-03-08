@@ -1,11 +1,14 @@
 const inputBox = document.getElementById("input-box");
 const listContainer = document.getElementById("list-container");
+let uniqueIdCounter = 0;
+
+const allRdio = document.getElementById("");
+const doneRdio = document.getElementById("");
+const openRdio = document.getElementById("");
 
 // Add
 function addTask() {
-  const listItems = Array.from(
-    document.getElementById("list-container").getElementsByTagName("li")
-  );
+  const listItems = Array.from(listContainer.getElementsByTagName("li"));
   const double = listItems.some(
     (item) =>
       item.textContent.trim().toLowerCase() ===
@@ -20,11 +23,10 @@ function addTask() {
   let li = document.createElement("li");
   let checkBox = document.createElement("input");
 
+  li.setAttribute("id", "task-" + uniqueIdCounter++);
+  li.setAttribute("statusDone", false);
+
   checkBox.type = "checkbox";
-  checkBox.addEventListener("click", function () {
-    li.classList.toggle("checked");
-    saveData();
-  });
 
   li.appendChild(checkBox);
   li.appendChild(document.createTextNode(inputBox.value));
@@ -35,7 +37,18 @@ function addTask() {
   saveData();
 }
 
-// Delete die gecheckten
+// toggle checkboxen status
+listContainer.addEventListener("click", function (event) {
+  const target = event.target;
+  if (target.tagName === "INPUT" && target.type === "checkbox") {
+    const li = target.parentElement;
+    li.classList.toggle("checked");
+    li.setAttribute("statusDone", target.checked ? "true" : "false");
+    saveData();
+  }
+});
+
+// Delete checked
 function removeTask() {
   let checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
@@ -50,11 +63,30 @@ function removeTask() {
 // Filter
 function toggleFilter(checkbox) {
   const radioButtons = document.querySelectorAll('.filter input[type="radio"]');
+  const liEls = listContainer.getElementsByTagName("li");
 
+  // es kann nur ein button ausgewählt werden.
   radioButtons.forEach((button) => {
     if (button !== checkbox) {
       button.checked = false;
     }
+    const boxDone = checkbox.id === "doneCheckbox" ? true : false;
+    const boxOpen = checkbox.id === "openCheckbox" ? true : false;
+
+    for (let i = 0; i < liEls.length; i++) {
+      const liEl = liEls[i];
+      const statusDone = liEl.getAttribute("statusDone") === "true";
+
+      if (boxDone && !statusDone) {
+        liEl.style.display = "none";
+      } else if (boxOpen && statusDone) {
+        liEl.style.display = "none";
+      } else {
+        liEl.style.display = "block";
+      }
+    }
+
+    saveData();
   });
 
   saveData();
