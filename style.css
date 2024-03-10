@@ -9,7 +9,7 @@
 .container {
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(135deg, #01235c, rgb(27, 169, 235));
+  background: linear-gradient(135deg, #090239, rgb(241, 43, 3));
   padding: 10px;
 }
 
@@ -67,13 +67,6 @@ button {
   padding: 4px 8px;
   display: inline-block;
   min-height: 28px;
-  transition: background-color 0.24s, box-shadow 0.24s;
-  :hover {
-    box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px,
-      rgb(0 0 0 / 12%) 0px 1px 1px 0px, rgb(60 66 87 / 16%) 0px 0px 0px 1px,
-      rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(60 66 87 / 8%) 0px 3px 9px 0px,
-      rgb(60 66 87 / 8%) 0px 2px 5px 0px;
-  }
 }
 
 button {
@@ -87,10 +80,20 @@ button {
 ul li {
   list-style: none;
   font-size: 17px;
-  padding: 12px 8px 12px 50px;
   user-select: none;
-  cursor: pointer;
   position: relative;
+}
+
+input[type="checkbox"] {
+  /* appearance: none;
+  -webkit-appearance: none; */
+  margin-right: 7px;
+  transform: translateY(0.4em);
+}
+
+input[type="checkbox"]:checked {
+  background-color: grey;
+  border-color: grey;
 }
 
 .checked {

@@ -34,6 +34,7 @@ function addTask() {
   li.setAttribute("statusDone", false);
 
   checkBox.type = "checkbox";
+  checkBox.className = "task-checkbox";
 
   li.appendChild(checkBox);
   li.appendChild(document.createTextNode(inputBox.value));
